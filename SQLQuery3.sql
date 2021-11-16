@@ -1,59 +1,59 @@
 CREATE TABLE [dbo].[Customer](
-     [custid] [int] IDENTITY(1,1) NOT NULL,
-	 [custname] [varchar](50) NOT NULL,
-	 [custemail] [varchar](50) NOT NULL,
-	 [custaddress] [varchar](50) NOT NULL,
+     [Id] [int] IDENTITY(1,1) NOT NULL,
+	 [Name] [nvarchar](50) NOT NULL,
+	 [Email] [nvarchar](50) NOT NULL,
+	 [Address] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED
 	 (
-	 [custid] ASC
+	 [Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 go
 
-Create procedure [dbo].[AddNewcustDetails]  
+Create procedure [dbo].[AddNewDetails]  
 (  
-   @Name varchar (50),  
-   @email varchar (50),  
-   @Address varchar (50)  
+   @Name nvarchar (50),  
+   @Email nvarchar (50),  
+   @Address nvarchar (50)  
 )  
 as  
 begin  
-   Insert into Customer values(@Name,@email,@Address)  
+   Insert into Customer values(@Name,@Email,@Address)  
 End
 go
 
-CREATE Procedure [dbo].[GetAllCustDetails]    
+CREATE Procedure [dbo].[GetAllDetails]    
 as    
 begin    
-   select id as custId,Name,email,Address from Customer   
+   select id as Id,Name,Email,Address from Customer   
 End
 go
 
-Create procedure [dbo].[UpdateCustDetails]  
+Create procedure [dbo].[UpdateDetails]  
 (  
    @Custid int,  
-   @Name varchar (50),  
-   @email varchar (50),  
-   @Address varchar (50)  
+   @Name nvarchar (50),  
+   @Email nvarchar (50),  
+   @Address nvarchar (50)  
 )  
 as  
 begin  
    Update Customer   
    set @Name =@Name,  
-   @email=@email,  
+   @Email=@Email,  
    @Address=@Address  
-   where  id = @Custid    
+   where  id = @Id    
 End 
 go
 
 
-Create procedure [dbo].[DeleteCustById]  
+Create procedure [dbo].[DeleteById]  
 (  
-   @CustId int  
+   @Id int  
 )  
 as  
 begin  
-   Delete from Customer where Id=@custId  
+   Delete from Customer where Id=@Id  
 End
 
 
